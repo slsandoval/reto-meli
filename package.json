@@ -1,5 +1,5 @@
 {
-  "name": "reto-meli2",
+  "name": "reto-meli",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -28,6 +28,8 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.7.0",
     "jest": "^26.6.3",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1",
     "stylelint": "^13.12.0",
     "stylelint-config-standard": "^21.0.0",
     "vue-jest": "^3.0.4"
