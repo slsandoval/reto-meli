@@ -13,8 +13,7 @@ export default {
 
 <style lang="scss" scoped>
 picture {
-	width: 100px;
-	height: 40px;
+	width: 100%;
 	text-align: left;
 
 	img {

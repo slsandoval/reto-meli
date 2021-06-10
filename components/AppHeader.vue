@@ -25,14 +25,13 @@ export default {
 
 header {
 	width: 100%;
-	height: 60px;
 	background: $yellow;
-	padding: $ml-space-half-x 0;
 }
 
 .container {
-	display: flex;
-	justify-content: center;
-	align-content: center;
+	display: grid;
+	grid-template-columns: 90px 1fr;
+	grid-template-rows: 40px;
+	padding: $ml-space-half-x 0;
 }
 </style>
