@@ -12,14 +12,14 @@ export default {
 	props: {
 		items: {
 			type: Array,
-			require: true,
+			required: true,
 		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/scss/constants.scss';
+@import '~/assets/scss/constants.scss';
 
 .breadcrumb {
 	display: flex;
