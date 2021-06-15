@@ -1,9 +1,16 @@
+/* Grid */
+$col: 85px;
+$col-gap: 20px;
+$full-width: 1240px;
+$ml-width: 1030px;
+
 /* Spaces */
 $ml-space-quarter-x: 4px;
 $ml-space-half-x: 8px;
 $ml-space-1-x: 16px;
 $ml-space-1-and-half-x: 24px;
 $ml-space-2-x: 32px;
+$ml-space-3-x: 48px;
 
 /* Colors */
 $yellow: #ffe600;
@@ -22,3 +29,9 @@ $ml-title-text-s: 24px;
 $ml-title-text-m: 28px;
 $ml-title-text-l: 36px;
 $ml-title-text-xl: 46px;
+
+/* Images */
+$items-img-width: 180px;
+$items-img-heigth: 180px;
+$detail-img-width: 680px;
+$detail-img-heigth: 680px;

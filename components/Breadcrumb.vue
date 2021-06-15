@@ -1,5 +1,5 @@
 <template>
-	<div class="breadcrumb container">
+	<div class="breadcrumb">
 		<a v-for="(item, index) in items" :key="index" href="">
 			{{ item.text }}
 		</a>

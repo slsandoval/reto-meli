@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 		<Breadcrumb :items="breadcrumbs" />
 		<Product :products="products" />
 	</div>
@@ -8,7 +8,6 @@
 <script>
 import Breadcrumb from '~/components/Breadcrumb'
 import Product from '~/components/Product'
-
 
 export default {
 	name: 'Items',

@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div>
 		<article v-for="item in products" :key="item.id">
 			<NuxtLink :to="`/items/${ item.id }`" class="product-img">
 				<picture>
@@ -11,7 +11,7 @@
 					{{ item.price }}
 				</NuxtLink> 
 				<h4>{{ item.title }}</h4>
-				<div class="product-description">{{ item.description}}</div>
+				<div class="product-description">{{ item.description }}</div>
 			</div>
 		</article>
 	</div>
@@ -32,20 +32,16 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/constants.scss';
 
-$img-width: 180px;
-$img-heigth: 180px;
-
 article {
 	display: flex;
 	padding: $ml-space-1-x;
 	background: white;
 
 	.product-img {
-		width: $img-width;
-		height: $img-heigth;
+		width: $items-img-width;
+		height: $items-img-heigth;
 		margin-right: $ml-space-1-x;
 		overflow: hidden;
-		// padding: $ml-space-1-x;
 
 		img {
 			width: 100%;
