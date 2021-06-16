@@ -1,7 +1,9 @@
 <template>
   <header>
 		<div class="container">
-			<Logo />
+			<NuxtLink to="/">
+				<Logo />
+			</NuxtLink> 
 			<Search />
 		</div>
   </header>

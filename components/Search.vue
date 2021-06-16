@@ -1,7 +1,7 @@
 <template>
-	<form class="search">
-		<input type="text" tabindex="1" placeholder="Nunca dejes de buscar">
-		<button type="submit" tabindex="2">
+	<form class="search" @submit.prevent="search">
+		<input v-model="query" type="text" tabindex="1" placeholder="Nunca dejes de buscar">
+		<button type="submit" tabindex="2" @click.once="search">
 			<img src="~/assets/imgs/ic_Search@2x.png" alt="buscar">
 		</button>
 	</form>
@@ -10,6 +10,18 @@
 <script>
 export default {
 	name: 'Search',
+	data() {
+		return {
+			query: '',
+		}
+	},
+	methods: {
+		search() {
+			if (this.query) {
+				this.$router.push(`/items?search=${this.query}`)
+			}
+		},
+	},
 }
 </script>
 
