@@ -8,6 +8,7 @@
 <script>
 import Breadcrumb from '~/components/Breadcrumb'
 import ProductDetail from '~/components/ProductDetail'
+import { getDetail } from '~/endpoints/detail'
 
 export default {
 	name: 'Detail',
@@ -17,6 +18,8 @@ export default {
 	},
 	data() {
 		return {
+			id: '',
+			responseAPI: '',
 			breadcrumbs: [
 				{ text: 'Electronica', href: '' },
 				{ text: 'Celulares', href: '' },
@@ -33,6 +36,21 @@ export default {
 				stock: '234 vendidos',
 			},
 		}
+	},
+	watch: {
+		'$route.params' : {
+			handler() {
+				this.id = this.$route.params.id
+				this.launchGetDetail()
+			},
+			deep: true,
+			immediate: true,
+		},
+	},
+	methods: {
+		async launchGetDetail() {
+			this.responseAPI = await getDetail(this.id)
+		},
 	},
 }
 </script>
