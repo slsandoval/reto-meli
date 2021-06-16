@@ -1,56 +1,37 @@
 <template>
 	<div class="container">
-		<Breadcrumb :items="breadcrumbs" />
-		<Product :products="products" />
+		<Loader v-if="loading" />
+		<template v-else-if="products.length">
+			<Breadcrumb :items="breadcrumbs" />
+			<Products :products="products" />
+		</template>
+		<NotInfo v-else />
 	</div>
 </template>
 
 <script>
+import Loader from '~/components/Loader'
 import Breadcrumb from '~/components/Breadcrumb'
-import Product from '~/components/Product'
+import Products from '~/components/Products'
+import NotInfo from '~/components/NotInfo'
 import { search } from '~/endpoints/search'
+
+const ITEMS_TO_SHOW = 4
 
 export default {
 	name: 'Items',
 	components: {
+		Loader,
 		Breadcrumb,
-		Product,
+		Products,
+		NotInfo,
 	},
 	data() {
 		return {
 			query: '',
-			responseAPI: '',
-			breadcrumbs: [
-				{ text: 'Electronica', href: '' },
-				{ text: 'Celulares', href: '' },
-				{ text: 'Iphone', href: '' },
-			],
-			products: [
-				{ id: 1, 
-					image: 'http://lorempixel.com/400/200', 
-					price: 1900, 
-					title: 'Aple touch1 5g 16gh Negro igual al nuevo', 
-					description: 'Completo unico', 
-					city: 'Bogota' },
-				{ id: 2, 
-					image: 'http://lorempixel.com/400/200', 
-					price: 2000, 
-					title: 'Aple touch2 5g 16gh Negro igual al nuevo', 
-					description: 'Completo unico', 
-					city: 'manga' },
-				{ id: 3, 
-					image: 'http://lorempixel.com/400/200', 
-					price: 2100, 
-					title: 'Aple touch3 5g 16gh Negro igual al nuevo', 
-					description: 'Completo unico', 
-					city: 'cali' },
-				{ id: 4, 
-					image: 'http://lorempixel.com/400/200', 
-					price: 2200, 
-					title: 'Aple touch45g 16gh Negro igual al nuevo', 
-					description: 'Completo unico', 
-					city: 'medell' },
-			],
+			loading: true,
+			breadcrumbs: [],
+			products: [],
 		}
 	},
 	watch: {
@@ -65,7 +46,13 @@ export default {
 	},
 	methods: {
 		async launchSearch() {
-			this.responseAPI = await search(this.query)
+			const { data, error } = await search(this.query)
+			if (!error && data) {
+				this.products = data.items.slice(0, ITEMS_TO_SHOW)
+				this.breadcrumbs = data.categories
+			}
+
+			this.loading = false
 		},
 	},
 }
