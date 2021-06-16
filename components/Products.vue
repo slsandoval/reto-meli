@@ -3,12 +3,12 @@
 		<article v-for="item in products" :key="item.id">
 			<NuxtLink :to="`/items/${ item.id }`" class="product-img">
 				<picture>
-					<img :src="item.image" :alt="item.title" />
+					<img :src="item.picture" :alt="item.title" />
 				</picture>
 			</NuxtLink> 
 			<div class="product-info">
 				<NuxtLink :to="`/items/${ item.id }`" class="product-price">
-					{{ item.price }}
+					{{ item.price | currency }}
 				</NuxtLink> 
 				<h4>{{ item.title }}</h4>
 				<div class="product-description">{{ item.description }}</div>
@@ -19,7 +19,7 @@
 	
 <script>
 export default {
-	name: 'Product',
+	name: 'Products',
 	props: {
 		products: {
 			type: Array,
@@ -47,8 +47,12 @@ article {
 			width: 100%;
 			height: 100%;
 			border-radius: $ml-space-quarter-x;
-			object-fit: cover;
+			object-fit: contain;
 		}
+	}
+
+	.product-info {
+		width: calc(100% - 180px);
 	}
 
 	.product-price {
