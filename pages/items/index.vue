@@ -8,6 +8,7 @@
 <script>
 import Breadcrumb from '~/components/Breadcrumb'
 import Product from '~/components/Product'
+import { search } from '~/endpoints/search'
 
 export default {
 	name: 'Items',
@@ -17,6 +18,8 @@ export default {
 	},
 	data() {
 		return {
+			query: '',
+			responseAPI: '',
 			breadcrumbs: [
 				{ text: 'Electronica', href: '' },
 				{ text: 'Celulares', href: '' },
@@ -49,6 +52,21 @@ export default {
 					city: 'medell' },
 			],
 		}
+	},
+	watch: {
+		'$route.query.search' : {
+			handler() {
+				this.query = this.$route.query.search
+				this.launchSearch()
+			},
+			deep: true,
+			immediate: true,
+		},
+	},
+	methods: {
+		async launchSearch() {
+			this.responseAPI = await search(this.query)
+		},
 	},
 }
 </script>
