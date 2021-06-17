@@ -2,27 +2,20 @@
 	<main>
 		<div class="product-detail">
 			<picture class="product-img">
-				<img :src="product.image" :alt="product.title" />
+				<img :src="product.picture" :alt="product.title" />
 			</picture>
 			<div class="product-description">
 				<h4>Descripción del producto</h4>
-				<p>{{ product.description }} Lorem ipsum dolor sit amet consectetur 
-					adipisicing elit. Eos, officia molestias officiis quod ullam cum
-					repellendus incidunt voluptatum dolor necessitatibus sunt eaque,
-					maxime quibusdam magnam esse quaerat tempore culpa excepturi
-					Lorem ipsum dolor sit amet consectetur 
-					adipisicing elit. Eos, officia molestias officiis quod ullam cum
-					repellendus incidunt voluptatum dolor necessitatibus sunt eaque,
-					maxime quibusdam magnam esse quaerat tempore culpa excepturi.</p>
+				<p>{{ product.description }}</p>
 			</div>
 		</div> 
 		<div class="product-info">
 			<div class="status">
-				{{ product.status }} - {{ product.stock }} 
+				{{ status }} - {{ soldQuantity }} 
 			</div>
 			<h1>{{ product.title }}</h1>
 			<div class="product-price">
-				{{ product.price }}
+				{{ product.price | currency }}
 			</div> 
 			<button type="button">Comprar</button>
 		</div>
@@ -36,6 +29,17 @@ export default {
 		product: {
 			type: Object,
 			required: true,
+		},
+	},
+	computed: {
+		status() {
+			const statusMapper = {
+				new: 'Nuevo',
+			}
+			return statusMapper[this.product.condition] || this.product.condition
+		},
+		soldQuantity() {
+			return `${this.product.sold_quantity} vendidos`
 		},
 	},
 }
@@ -80,7 +84,7 @@ main {
 	}
 
 	.product-info {
-		margin-left: $ml-space-1-x;
+		margin: 0 $ml-space-1-x;
 
 		.status {
 			margin-top: $ml-space-2-x;

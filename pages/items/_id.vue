@@ -1,40 +1,35 @@
 <template>
 	<div class="container">
-		<Breadcrumb :items="breadcrumbs" />
-		<ProductDetail :product="product" />
+		<Loader v-if="loading" />
+		<template v-else-if="product">
+			<Breadcrumb :items="breadcrumbs" />
+			<ProductDetail :product="product" />
+		</template>
+		<NotInfo v-else />
 	</div>
 </template>
 
 <script>
+import Loader from '~/components/Loader'
 import Breadcrumb from '~/components/Breadcrumb'
 import ProductDetail from '~/components/ProductDetail'
+import NotInfo from '~/components/NotInfo'
 import { getDetail } from '~/endpoints/detail'
 
 export default {
 	name: 'Detail',
 	components: {
+		Loader,
 		Breadcrumb,
 		ProductDetail,
+		NotInfo,
 	},
 	data() {
 		return {
 			id: '',
-			responseAPI: '',
-			breadcrumbs: [
-				{ text: 'Electronica', href: '' },
-				{ text: 'Celulares', href: '' },
-				{ text: 'Iphone', href: '' },
-			],
-			product: { 
-				id: 1, 
-				image: 'http://lorempixel.com/400/200', 
-				price: 1900, 
-				title: 'Aple touch1 5g 16gh Negro igual al nuevo', 
-				description: 'Completo unico', 
-				city: 'Bogota',
-				status: 'Nuevo',
-				stock: '234 vendidos',
-			},
+			loading: true,
+			breadcrumbs: [],
+			product: undefined,
 		}
 	},
 	watch: {
@@ -49,7 +44,13 @@ export default {
 	},
 	methods: {
 		async launchGetDetail() {
-			this.responseAPI = await getDetail(this.id)
+			const { data, error } = await getDetail(this.id)
+			if (!error && data) {
+				this.product = data.item
+				this.breadcrumbs = data.categories
+			}
+
+			this.loading = false
 		},
 	},
 }
