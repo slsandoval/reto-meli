@@ -1,7 +1,12 @@
 <template>
 	<div class="breadcrumb">
-		<NuxtLink v-for="(item, index) in items" :key="index" :to="`/items?search=${item.name}`">
-			{{ item.name }}
+		<template v-if="items.length">
+			<NuxtLink v-for="(item, index) in items" :key="index" :to="`/items?search=${item.name}`">
+				{{ item.name }}
+			</NuxtLink>
+		</template>
+		<NuxtLink v-else to="/">
+			Inicio
 		</NuxtLink>
 	</div>
 </template>
