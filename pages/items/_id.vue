@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import Loader from '~/components/Loader'
-import Breadcrumb from '~/components/Breadcrumb'
-import ProductDetail from '~/components/ProductDetail'
-import NotInfo from '~/components/NotInfo'
+import Loader from '~/components/layout/Loader'
+import Breadcrumb from '~/components/layout/Breadcrumb'
+import NotInfo from '~/components/layout/NotInfo'
+import ProductDetail from '~/components/products/ProductDetail'
 import { getDetail } from '~/endpoints/detail'
 
 export default {

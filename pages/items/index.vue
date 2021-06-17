@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import Loader from '~/components/Loader'
-import Breadcrumb from '~/components/Breadcrumb'
-import Products from '~/components/Products'
-import NotInfo from '~/components/NotInfo'
+import Loader from '~/components/layout/Loader'
+import Breadcrumb from '~/components/layout/Breadcrumb'
+import NotInfo from '~/components/layout/NotInfo'
+import Products from '~/components/products/Products'
 import { search } from '~/endpoints/search'
 
 const ITEMS_TO_SHOW = 4

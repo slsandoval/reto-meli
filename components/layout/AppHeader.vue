@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import Search from '~/components/Search.vue'
+import Logo from '~/components/layout/Logo.vue'
+import Search from '~/components/search/Search.vue'
 
 export default {
 	name: 'AppHeader',

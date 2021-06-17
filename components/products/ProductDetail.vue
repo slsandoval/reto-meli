@@ -35,6 +35,7 @@ export default {
 		status() {
 			const statusMapper = {
 				new: 'Nuevo',
+				used: 'Usado',
 			}
 			return statusMapper[this.product.condition] || this.product.condition
 		},
