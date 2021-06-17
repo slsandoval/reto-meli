@@ -1,12 +1,15 @@
 <template>
 	<div class="container">
-		<div class="not-info">No encontramos información relacionada 😟</div>
+		<h1 v-if="error.statusCode === 404">Parece que esta página no existe 🤔</h1>
+		<h1 v-else>Ha ocurrido un error 😱</h1>
+		<NuxtLink to="/">Ir a la página principal</NuxtLink>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'NotInfo',
+	name: 'ErrorPage',
+	props: ['error'],
 }
 </script>
 
@@ -15,13 +18,15 @@ export default {
 
 .container {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 2rem;
 }
 
-.not-info {
+h1 {
 	text-align: center;
 	font-size: $ml-title-text-s;
+	font-weight: normal;
 }
 </style>
