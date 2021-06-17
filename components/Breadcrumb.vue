@@ -1,8 +1,8 @@
 <template>
 	<div class="breadcrumb">
-		<a v-for="(item, index) in items" :key="index" href="">
-			{{ item.text }}
-		</a>
+		<NuxtLink v-for="(item, index) in items" :key="index" :to="`/items?search=${item.name}`">
+			{{ item.name }}
+		</NuxtLink>
 	</div>
 </template>
 

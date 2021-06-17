@@ -1,22 +1,20 @@
 import { AUTHOR as author } from '~/transforms/author'
 
 export function searchTransform(data) {
-	const categories = data.filters.map((item) => {
-		return item.values.map((value) => value.name)
-	})
+	const categories = mapCategories(data.filters)
 
 	const items = data.results.map((item) => {
 		return {
 			id: item.id,
-			title: item.title,
+			title: item.title || '',
 			price: {
-				currency: item.currency_id,
-				amount: item.price,
-				decimals: 0,
+				currency: item.currency_id || '',
+				amount: item.price || 0,
+				decimals: item.decimals || 0,
 			},
-			picture: '',
-			condition: item.condition,
-			free_shipping: item.shipping.free_shipping,
+			picture: item.thumbnail || '',
+			condition: item.condition || '',
+			free_shipping: item.shipping.free_shipping || false,
 		}
 	})
 
@@ -25,4 +23,13 @@ export function searchTransform(data) {
 		categories,
 		items,
 	}
+}
+
+function mapCategories(categories) {
+	if (!categories.length) {
+		return []
+	}
+
+	const category = categories?.find(({ id }) => id === 'category') || {}
+	return category?.values[0]?.path_from_root || []
 }
