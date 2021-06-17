@@ -7,11 +7,18 @@
 				</picture>
 			</NuxtLink> 
 			<div class="product-info">
-				<NuxtLink :to="`/items/${ item.id }`" class="product-price">
-					{{ item.price | currency }}
-				</NuxtLink> 
+				<div class="product-price">
+					<NuxtLink :to="`/items/${ item.id }`">
+						{{ item.price | currency }}
+					</NuxtLink>
+					<picture v-if="item.free_shipping">
+						<img src="~/assets/imgs/ic_shipping@2x.png" alt="Envío gratis" />
+					</picture>
+				</div>
 				<h4>{{ item.title }}</h4>
-				<div class="product-description">{{ item.description }}</div>
+				<div v-if="item.condition" class="product-description">
+					Completo Único!
+				</div>
 			</div>
 		</article>
 	</div>
@@ -56,10 +63,20 @@ article {
 	}
 
 	.product-price {
-		display: block;
+		display: flex;
+		align-items: flex-end;
 		margin-bottom: $ml-space-2-x;
-		font-size: $ml-title-text-s;
-		text-decoration: none;
+
+		a {
+			font-size: $ml-title-text-s;
+			text-decoration: none;
+		}
+
+		img {
+			width: $ml-body-text-l;
+			height: $ml-body-text-l;
+			margin-left: $ml-space-half-x;
+		}
 	}
 
 	h4 {
