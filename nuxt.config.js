@@ -14,10 +14,20 @@ export default {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ hid: 'description', name: 'description', content: '' },
+			{ name: 'author', content: 'Lorena Sandoval' },
+			{
+				hid: 'keywords',
+				name: 'keywords',
+				content: 'Mercado Libre, Front end test, Lorena Sandoval',
+			},
+			{
+				hid: 'description',
+				name: 'description',
+				content: 'Todo lo que necesitas lo consiges en un solo lugar, en Mercado Libre',
+			},
 		],
 		link: [
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+			{ rel: 'icon', type: 'image/png', href: '/favicon.png' },
 		],
 	},
 
